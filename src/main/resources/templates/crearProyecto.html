@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Crear Nuevo Proyecto</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mx-auto px-4 mt-8">
+    <h2 class="text-xl font-semibold mb-4">Crear Nuevo Proyecto</h2>
+    <form th:action="@{/proyecto/guardar}" th:object="${proyecto}" method="post">
+        <div class="mb-4">
+            <label for="nombre" class="block text-sm font-medium text-gray-700">Nombre del Proyecto</label>
+            <input type="text" id="nombre" name="nombre" th:value="*{nombre}" class="mt-1 p-2 w-full border-gray-300 rounded-md shadow-sm" required>
+        </div>
+        <div class="mb-4">
+            <label for="descripcion" class="block text-sm font-medium text-gray-700">Descripción</label>
+            <textarea id="descripcion" name="descripcion" th:value="*{descripcion}" class="mt-1 p-2 w-full border-gray-300 rounded-md shadow-sm" required></textarea>
+        </div>
+        <div class="mb-4">
+            <label for="zona" class="block text-sm font-medium text-gray-700">Zona</label>
+            <input type="text" id="zona" name="zona" th:value="*{zona}" class="mt-1 p-2 w-full border-gray-300 rounded-md shadow-sm">
+        </div>
+        <div class="mb-4">
+            <label for="fecha" class="block text-sm font-medium text-gray-700">Fecha de Inicio</label>
+            <input type="date" id="fecha" name="fecha" th:value="*{fecha}" class="mt-1 p-2 w-full border-gray-300 rounded-md shadow-sm">
+        </div>
+        <div class="flex items-center justify-between">
+            <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700">Guardar Proyecto</button>
+            <a href="/proyectos" class="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-700">Cancelar</a>
+        </div>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <title>Nueva Tarea</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mx-auto px-4">
+        <h1 class="text-3xl font-bold my-8">Nueva Tarea</h1>
+        <form th:action="@{/tarea/guardar}" th:object="${tarea}" method="post" class="bg-white p-4 rounded shadow">
+            <div class="mb-4">
+                <label for="titulo" class="block text-sm font-medium text-gray-700">Título:</label>
+                <input type="text" th:field="*{titulo}" id="titulo" name="titulo" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+            </div>
+            <div class="mb-4">
+                <label for="descripcion" class="block text-sm font-medium text-gray-700">Descripción:</label>
+                <textarea th:field="*{descripcion}" id="descripcion" name="descripcion" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"></textarea>
+            </div>
+            <div class="mb-4">
+                <label for="proyecto" class="block text-sm font-medium text-gray-700">Proyecto:</label>
+                    <select th:field="*{proyecto}" id="proyecto" name="proyecto" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                        <option value="">-- Seleccione un proyecto --</option>
+                        <option value="unassigned">Tarea no asignada</option>
+                        <option th:each="proyecto : ${proyectos}" th:value="${proyecto.idproyecto}" th:text="${proyecto.nombre}"></option>
+                    </select>
+            </div>
+            <button type="submit" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700">Guardar</button>
+        </form>
+    </div>
+</body>
+</html>
